@@ -5,10 +5,11 @@ import axios from "axios";
 import { userName } from "./shared";
 import { Counter } from "./components/Counter";
 import { useEffect, useState } from "react";
+import { ProductsPage } from "./pages/ProductsPage";
 
 // Stylingler
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { ProductsPage } from "./pages/ProductsPage";
 
 function App() {
   const [productList, setProductList] = useState([]);
@@ -37,7 +38,7 @@ function App() {
       <Counter initialCounter={100} unit={10} />
       <Counter />
       <hr />
-      <ProductsPage productList={productList}/>
+      <ProductsPage productList={productList} />
     </div>
   );
 }

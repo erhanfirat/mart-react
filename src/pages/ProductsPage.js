@@ -1,8 +1,21 @@
+const pageTitleStyling = {
+  backgroundColor: "#002233",
+  color: "#eef1c4",
+};
+
 export const ProductsPage = ({ productList }) => {
   console.log("ProductsPage > productList: ", productList);
   return (
     <div>
-      <h1>Ürünler</h1>
+      <h1 style={pageTitleStyling}>Ürünler</h1>
+      <h1
+        style={{
+          backgroundColor: "#002233",
+          color: "#eef1c4",
+        }}
+      >
+        Ürünler
+      </h1>
       <hr />
       <div className="products-container">
         {
