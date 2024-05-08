@@ -34,3 +34,10 @@
 .product-card > img {
   max-width: 100%;
 }
+
+.subscribe-form input,
+.subscribe-form button,
+.subscribe-form label {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 1rem;
+}

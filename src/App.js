@@ -10,6 +10,7 @@ import { ProductsPage } from "./pages/ProductsPage";
 // Stylingler
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import { Footer } from "./layout/Footer";
 
 function App() {
   const [productList, setProductList] = useState([]);
@@ -32,13 +33,18 @@ function App() {
 
   return (
     <div className="main">
-      <h1>Merhaba {userName}</h1>
-      <hr />
-      <Counter initialCounter={50} unit={5} />
-      <Counter initialCounter={100} unit={10} />
-      <Counter />
-      <hr />
-      <ProductsPage productList={productList} />
+      <header>
+        <h1>Merhaba {userName}</h1>
+        <hr />
+      </header>
+      <div className="page-content">
+        <Counter initialCounter={50} unit={5} />
+        <Counter initialCounter={100} unit={10} />
+        <Counter />
+        <hr />
+        <ProductsPage productList={productList} />
+      </div>
+      <Footer />
     </div>
   );
 }
