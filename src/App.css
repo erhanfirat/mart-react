@@ -35,9 +35,43 @@
   max-width: 100%;
 }
 
+.subscribe-form {
+  width: 100%;
+  max-width: 600px;
+  padding: 1rem;
+  margin: 2rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 12px 4px rgba(0, 0, 0, 0.2);
+}
 .subscribe-form input,
+.subscribe-form select,
 .subscribe-form button,
 .subscribe-form label {
   padding: 0.5rem 1rem;
   margin: 0.5rem 1rem;
+}
+
+.subscribe-form input,
+.subscribe-form select {
+  width: 70%;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.subscribe-form > div > label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subscribe-form .options {
+  padding-left: 2rem;
+}
+
+.error {
+  color: red;
+  padding-top: 5px;
+  margin-top: 0px;
+  margin-bottom: 1.5rem;
 }
