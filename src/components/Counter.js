@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { CounterDisplay } from "./CounterDisplay";
 
-export const Counter = ({ initialCounter = 0, unit = 1 }) => {
+export const Counter = ({
+  initialCounter = 0,
+  unit = 1,
+  counterId = Math.round(Math.random() * 9999999999),
+}) => {
   const [counter, setCounter] = useState(initialCounter);
 
   const arttir = () => setCounter(counter + unit);
@@ -21,6 +25,7 @@ export const Counter = ({ initialCounter = 0, unit = 1 }) => {
 
   return (
     <CounterDisplay
+      counterId={counterId}
       counter={counter}
       arttir={arttir}
       azalt={azalt}

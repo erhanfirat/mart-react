@@ -1,12 +1,22 @@
 import { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
-export const CounterDisplay = ({ counter, arttir, azalt, reset }) => {
+export const CounterDisplay = ({
+  counterId,
+  counter,
+  arttir,
+  azalt,
+  reset,
+}) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
 
   return (
-    <div className="counter-container">
+    <div
+      id={counterId}
+      data-cy={"test-" + counterId}
+      className="counter-container"
+    >
       <div className="counter">{counter}</div>
       <div>
         <Button onClick={arttir} color="primary">
