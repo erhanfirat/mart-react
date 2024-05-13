@@ -4,9 +4,10 @@ import { CounterDisplay } from "./CounterDisplay";
 export const Counter = ({
   initialCounter = 0,
   unit = 1,
-  counterId = Math.round(Math.random() * 9999999999),
+  counterId = "counter-" + Math.round(Math.random() * 9999999999),
 }) => {
   const [counter, setCounter] = useState(initialCounter);
+  let counter1 = 0;
 
   const arttir = () => setCounter(counter + unit);
   const azalt = () => setCounter(counter - unit);

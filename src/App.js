@@ -11,6 +11,7 @@ import { ProductsPage } from "./pages/ProductsPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Footer } from "./layout/Footer";
+import { MyButton } from "./components/MyButton";
 
 function App() {
   const [productList, setProductList] = useState([]);
@@ -31,22 +32,28 @@ function App() {
       });
   }, []);
 
+  // JSX : Java Script Expression
   return (
     <div className="main">
       <header>
         <h1>Merhaba {userName}</h1>
         <hr />
-        <button
+        <MyButton
           id="toggle-theme"
           onClick={(e) => {
-            e.target.textContent = "Switch Light Theme";
+            console.log("Toggle Click!!!");
           }}
+          title="Theme değerini değiştirmek için tıklayınız..."
+          data-cy="toggle-btn"
+          className="mavi"
         >
-          Toggle Theme
-        </button>
+          <i class="fa-solid fa-sun"></i>
+          <span>Light </span>
+          Theme
+        </MyButton>
       </header>
       <div className="page-content">
-        <Counter initialCounter={50} unit={5} counterId={"c-50"} />
+        <Counter initialCounter={50} unit={5} />
         <Counter initialCounter={100} unit={10} counterId={"c-100"} />
         <Counter counterId={"c-0"} />
         <hr />
