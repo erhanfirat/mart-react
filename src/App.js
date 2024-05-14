@@ -6,22 +6,26 @@ import { userName } from "./shared";
 import { Counter } from "./components/Counter";
 import { useEffect, useState } from "react";
 import { ProductsPage } from "./pages/ProductsPage";
+import { Footer } from "./layout/Footer";
+import { MyButton } from "./components/MyButton";
 
 // Stylingler
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { Footer } from "./layout/Footer";
-import { MyButton } from "./components/MyButton";
+import { HomePage } from "./pages/HomePage";
+import { CounterPage } from "./pages/CounterPage";
+import { Route, Switch, Link } from "react-router-dom";
+import { ProductDetailPage } from "./pages/ProductDetailPage";
 
 function App() {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
     // todo: axios get req ile products datasını çek
+    console.warn("***** UYGULAMA BAŞARIYLA YÜKLENDİ! *****");
     axios
       .get("https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products")
       .then((res) => {
-        console.log("REQ BAŞARIYLA SONUÇLANDI: ", res.data);
         setProductList(res.data);
       })
       .catch((err) => {
@@ -37,7 +41,11 @@ function App() {
     <div className="main">
       <header>
         <h1>Merhaba {userName}</h1>
-        <hr />
+        <nav>
+          <Link to="/">Ana Sayfa</Link>
+          <Link to="/counter">Sayaç</Link>
+          <Link to="/products">Ürünler</Link>
+        </nav>
         <MyButton
           id="toggle-theme"
           onClick={(e) => {
@@ -53,11 +61,20 @@ function App() {
         </MyButton>
       </header>
       <div className="page-content">
-        <Counter initialCounter={50} unit={5} />
-        <Counter initialCounter={100} unit={10} counterId={"c-100"} />
-        <Counter counterId={"c-0"} />
-        <hr />
-        <ProductsPage productList={productList} />
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+          <Route path="/counter" exact>
+            <CounterPage />
+          </Route>
+          <Route path="/products" exact>
+            <ProductsPage productList={productList} exact />
+          </Route>
+          <Route path="/product/detail/:productId" exact>
+            <ProductDetailPage exact />
+          </Route>
+        </Switch>
       </div>
       <Footer />
     </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 export const CounterDisplay = ({
@@ -10,6 +10,11 @@ export const CounterDisplay = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => setShowModal(!showModal);
+
+  useEffect(() => {
+    // update
+    console.log("CounterDisplay Did Update!");
+  });
 
   return (
     <div

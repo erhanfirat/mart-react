@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
 const pageTitleStyling = {
   backgroundColor: "#002233",
   color: "#eef1c4",
 };
 
 export const ProductsPage = ({ productList }) => {
-  console.log("ProductsPage > productList: ", productList);
   return (
     <div>
       <h1 style={pageTitleStyling}>Ürünler</h1>
@@ -27,6 +28,7 @@ export const ProductsPage = ({ productList }) => {
               <p>{product.description}</p>
               <p>{product.price}</p>
               <button>+ Sepete Ekle</button>
+              <Link to={"/product/detail/" + product.id}>İncele</Link>
             </div>
           ))
         }

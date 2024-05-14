@@ -31,13 +31,7 @@ export const SubscribeForm = () => {
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
-    console.log(
-      "input name, value, type, checked > ",
-      name,
-      value,
-      type,
-      checked
-    );
+
     setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
   };
 

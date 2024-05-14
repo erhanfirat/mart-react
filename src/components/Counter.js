@@ -14,15 +14,33 @@ export const Counter = ({
   const reset = () => setCounter(initialCounter);
 
   useEffect(() => {
-    console.warn("Counter değeri değişti: ", counter);
+    // Effectin başlangıç anını yakalar
+    console.warn("COUNTER STATE DEĞİŞTİ: ", counter);
+
+    return () => {
+      // Effect in sonlanma anını yakalar
+      console.warn("COUNTER STATE DEĞİŞECEK! ", counter);
+    };
   }, [counter]);
 
   useEffect(() => {
     // Component Did Mount anını yakalarız - anında bu fonk çalışır
     // componentin doğum anı
 
-    console.log("Counter componenti did mount oldu, doğdu!");
+    console.warn("**** Counter componenti did mount oldu, doğdu!");
+
+    return () => {
+      // hangi aşamayı yakalar?
+      // component will unmount!
+      console.warn("**** Counter componenti UNMOUNT oldu, yok edildi!");
+    };
   }, []);
+
+  useEffect(() => {
+    console.log(
+      "Counter componenti rerender edildi, update oldu! Component Did Update"
+    );
+  });
 
   return (
     <CounterDisplay
