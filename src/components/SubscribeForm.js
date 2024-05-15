@@ -147,9 +147,12 @@ export const SubscribeForm = () => {
         <label>
           Choose your car!
           <select name="car" onChange={handleInputChange}>
-            <option value={"audi-060734"}>Audi</option>
-            <option>BMW</option>
-            <option>Mercedes</option>
+            <option disabled selected>
+              Araç Markasını Seçiniz...
+            </option>
+            <option value={"a1"}>Audi</option>
+            <option value={"b1"}>BMW</option>
+            <option value={"m1"}>Mercedes</option>
             <option>Volkswagen</option>
             <option>Toyota</option>
             <option>Honda</option>
@@ -199,10 +202,40 @@ export const SubscribeForm = () => {
             />
           </label>
         </div>
+        <label>Ton</label>
+        <div>
+          <label>
+            Açık
+            <input
+              type="radio"
+              name="ton"
+              value={"Açık"}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Orta
+            <input
+              type="radio"
+              name="ton"
+              value={"Orta"}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Koyu
+            <input
+              type="radio"
+              name="ton"
+              value={"Koyu"}
+              onChange={handleInputChange}
+            />
+          </label>
+        </div>
       </div>
       <div>
         {konular.map((konu) => (
-          <label>
+          <label key={konu}>
             {konu}
             <input
               type="checkbox"
