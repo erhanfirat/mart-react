@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { ProductCard } from "../components/ProductCard";
 
 const pageTitleStyling = {
   backgroundColor: "#002233",
@@ -8,28 +9,13 @@ const pageTitleStyling = {
 export const ProductsPage = ({ productList }) => {
   return (
     <div>
-      <h1 style={pageTitleStyling}>Ürünler</h1>
-      <h1
-        style={{
-          backgroundColor: "#002233",
-          color: "#eef1c4",
-        }}
-      >
-        Ürünler
-      </h1>
+      <h1>Ürünler</h1>
       <hr />
       <div className="products-container">
         {
           // todo: burada her bir ürün için ürün kartı oluştur
           productList.map((product) => (
-            <div key={product.id} className="product-card">
-              <img src={product.img} />
-              <h2>{product.name}</h2>
-              <p>{product.description}</p>
-              <p>{product.price}</p>
-              <button>+ Sepete Ekle</button>
-              <Link to={"/product/detail/" + product.id}>İncele</Link>
-            </div>
+            <ProductCard product={product} />
           ))
         }
       </div>

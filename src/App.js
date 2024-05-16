@@ -19,6 +19,8 @@ import "./App.css";
 function App() {
   const [productList, setProductList] = useState([]);
 
+  // sipariş state
+
   useEffect(() => {
     // todo: axios get req ile products datasını çek
     console.warn("***** UYGULAMA BAŞARIYLA YÜKLENDİ! *****");

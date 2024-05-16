@@ -54,22 +54,41 @@ export const SubscribeForm = () => {
   const validate = () => {
     // name field validation
     if (!formData.name) {
-      setFormErrors({ ...formErrors, name: "İsim alanı zorunludur..." });
+      setFormErrors((prevFormErrors) => ({
+        ...prevFormErrors,
+        name: "İsim alanı zorunludur...",
+      }));
     } else if (formData.name.length < 3) {
-      setFormErrors({
-        ...formErrors,
+      setFormErrors((prevFormErrors) => ({
+        ...prevFormErrors,
         name: "En az 3 karakter girilmesi gerekiyor...",
-      });
+      }));
     } else if (formData.name.length > 20) {
-      setFormErrors({
-        ...formErrors,
+      setFormErrors((prevFormErrors) => ({
+        ...prevFormErrors,
         name: "En fazla 20 karakter girilebilir...",
-      });
+      }));
     } else {
-      setFormErrors({
-        ...formErrors,
+      setFormErrors((prevFormErrors) => ({
+        ...prevFormErrors,
         name: "",
+      }));
+    }
+
+    // age validation
+
+    if (formData.age < 10) {
+      setFormErrors((prevFormErrors) => {
+        debugger;
+        return { ...prevFormErrors, age: "Yaş bilgisi 10'dan küçük olamaz" };
       });
+    } else if (formData.age > 70) {
+      setFormErrors((prevFormErrors) => ({
+        ...prevFormErrors,
+        age: "Yaş bilgisi 70'den büyül olamaz",
+      }));
+    } else {
+      setFormErrors((prevFormErrors) => ({ ...prevFormErrors, age: "" }));
     }
 
     // email validation
@@ -78,7 +97,12 @@ export const SubscribeForm = () => {
   };
 
   const isValid = () => {
-    return !(formErrors.name || formErrors.email || formErrors.list);
+    return !(
+      formErrors.name ||
+      formErrors.email ||
+      formErrors.list ||
+      formErrors.age
+    );
   };
 
   const submitHandler = (e) => {
@@ -89,6 +113,7 @@ export const SubscribeForm = () => {
     if (isValid()) {
       // eğer form valid ise form datasını gönder
       console.warn("FORM SUBMIT: ", formData);
+      // axios.post("endpointURL", formData).then()
     } else {
       // eğer form valid değil ise iptal et
       return;
@@ -120,6 +145,7 @@ export const SubscribeForm = () => {
             onChange={handleInputChange}
           />
         </label>
+        {formErrors.email && <p className="error">{formErrors.email}</p>}
       </div>
       <div>
         <label>
@@ -131,6 +157,7 @@ export const SubscribeForm = () => {
             onChange={handleInputChange}
           />
         </label>
+        {formErrors.age && <p className="error">{formErrors.age}</p>}
       </div>
       <div>
         <label>

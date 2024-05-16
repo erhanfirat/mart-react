@@ -3,16 +3,16 @@ import { MyButton } from "../components/MyButton";
 import { useEffect, useState } from "react";
 
 export const Header = () => {
-  const [showNav, setShowNav] = useState(false);
-  const location = useLocation();
+  const [showNav, setShowNav] = useState(true);
+  // const location = useLocation();
 
-  useEffect(() => {
-    if (location.pathname === "/products") {
-      setShowNav(true);
-    } else {
-      setShowNav(false);
-    }
-  }, [location]);
+  // useEffect(() => {
+  //   if (location.pathname === "/products") {
+  //     setShowNav(true);
+  //   } else {
+  //     setShowNav(false);
+  //   }
+  // }, [location]);
 
   return (
     <header>
@@ -31,7 +31,7 @@ export const Header = () => {
         }}
         title="Theme değerini değiştirmek için tıklayınız..."
         data-cy="toggle-btn"
-        className="mavi"
+        className="blue"
       >
         <i className="fa-solid fa-sun"></i>
         <span>Light </span>
