@@ -1,3 +1,9 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .counter-container {
   border: 1px solid #ccc;
   border-radius: 1rem;
@@ -142,5 +148,13 @@ header {
 }
 
 .page-content {
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+footer {
+  background-color: #333;
+  color: #fbfbfb;
+  margin-top: 1rem;
   padding: 1rem;
 }

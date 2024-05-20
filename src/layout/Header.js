@@ -22,6 +22,7 @@ export const Header = () => {
           <Link to="/">Ana Sayfa</Link>
           <Link to="/counter">Sayaç</Link>
           <Link to="/products">Ürünler</Link>
+          <Link to="/register">Kullanıcı Oluştur</Link>
         </nav>
       )}
       <MyButton
