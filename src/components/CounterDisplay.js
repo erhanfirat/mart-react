@@ -12,10 +12,10 @@ export const CounterDisplay = ({
     <div
       id={counterId}
       data-cy={"test-" + counterId}
-      className="counter-container"
+      className="bg-teal-950 text-slate-200 border rounded-lg inline-block m-4 font-mono shadow-2xl"
     >
-      <div className="counter">{counter}</div>
-      <div>
+      <div className="py-4 px-8 text-center text-xl">{counter}</div>
+      <div className="flex p-2 gap-2">
         <MyButton onClick={arttir} color="primary">
           +
         </MyButton>

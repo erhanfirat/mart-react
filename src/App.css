@@ -1,29 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+h1 {
+  @apply text-2xl;
+}
+
+input {
+  @apply border py-2 px-4 rounded-md w-[60%];
+}
+
+label {
+  @apply flex justify-between items-center mb-2;
+}
+
+button {
+  @apply btn;
+}
 
 .main {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-.counter-container {
-  border: 1px solid #ccc;
-  border-radius: 1rem;
-  padding: 0.5rem;
-  display: inline-block;
-  margin: 1rem;
-}
-
-.counter {
-  display: inline-block;
-  padding: 1rem 2rem;
-  background-color: rgb(36, 36, 36);
-  color: rgb(15, 243, 57);
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1.5rem;
-  width: 100%;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
 }
 
 .products-container {
@@ -100,17 +98,7 @@
 }
 
 .btn {
-  background-color: rgb(92, 92, 92);
-  color: azure;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: 0.25s;
-  padding: 0.5rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  justify-content: center;
+  @apply bg-gray-700 text-gray-50 rounded-lg cursor-pointer transition py-2 px-6 flex items-center gap-2 justify-center;
 }
 
 .btn:hover {

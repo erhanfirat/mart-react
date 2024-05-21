@@ -23,7 +23,10 @@ export const Register = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(mySubmitHandler)}>
+    <form
+      onSubmit={handleSubmit(mySubmitHandler)}
+      className="p-4 border shadow-2xl rounded-xl max-w-[600px]"
+    >
       <div>
         <label>
           İsim
