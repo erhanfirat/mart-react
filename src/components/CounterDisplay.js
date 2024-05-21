@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { MyButton } from "./MyButton";
 
 export const CounterDisplay = ({
   counterId,
@@ -8,14 +8,6 @@ export const CounterDisplay = ({
   azalt,
   reset,
 }) => {
-  const [showModal, setShowModal] = useState(false);
-  const toggleModal = () => setShowModal(!showModal);
-
-  useEffect(() => {
-    // update
-    console.log("CounterDisplay Did Update!");
-  });
-
   return (
     <div
       id={counterId}
@@ -24,37 +16,16 @@ export const CounterDisplay = ({
     >
       <div className="counter">{counter}</div>
       <div>
-        <Button onClick={arttir} color="primary">
+        <MyButton onClick={arttir} color="primary">
           +
-        </Button>
-        <Button onClick={toggleModal} color="danger">
+        </MyButton>
+        <MyButton onClick={reset} color="danger">
           Reset
-        </Button>
-        <Button onClick={azalt} color="primary">
+        </MyButton>
+        <MyButton onClick={azalt} color="primary">
           -
-        </Button>
+        </MyButton>
       </div>
-
-      <Modal isOpen={showModal} toggle={toggleModal}>
-        <ModalHeader toggle={toggleModal}>Sayaç Sıfırla</ModalHeader>
-        <ModalBody>
-          Sayaç değerini sıfırlamak istediğinizden emin misiniz?
-        </ModalBody>
-        <ModalFooter>
-          <Button color="secondary" onClick={toggleModal}>
-            İptal
-          </Button>
-          <Button
-            color="danger"
-            onClick={() => {
-              reset();
-              toggleModal();
-            }}
-          >
-            Resetle
-          </Button>{" "}
-        </ModalFooter>
-      </Modal>
     </div>
   );
 };

@@ -14,7 +14,7 @@ import { Header } from "./layout/Header";
 import { UserRegisterPage } from "./pages/UserRegisterPage";
 
 // Stylingler
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { ToastContainer, toast } from "react-toastify";
