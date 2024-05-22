@@ -6,8 +6,13 @@ export const Counter = ({
   unit = 1,
   counterId = "counter-" + Math.round(Math.random() * 9999999999),
 }) => {
-  const [counter, setCounter] = useState(initialCounter);
-  let counter1 = 0;
+  const [counter, setCounter] = useState(() => {
+    if (localStorage.getItem(counterId)) {
+      return parseInt(localStorage.getItem(counterId));
+    }
+
+    return initialCounter;
+  });
 
   const arttir = () => setCounter(counter + unit);
   const azalt = () => setCounter(counter - unit);
@@ -16,6 +21,8 @@ export const Counter = ({
   useEffect(() => {
     // Effectin başlangıç anını yakalar
     console.warn("COUNTER STATE DEĞİŞTİ: ", counter);
+
+    localStorage.setItem(counterId, counter);
 
     return () => {
       // Effect in sonlanma anını yakalar

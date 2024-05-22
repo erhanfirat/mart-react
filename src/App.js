@@ -17,6 +17,7 @@ import { UserRegisterPage } from "./pages/UserRegisterPage";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { ToastContainer, toast } from "react-toastify";
+import { LoginPage } from "./pages/LoginPage";
 
 function App() {
   const [productList, setProductList] = useState([]);
@@ -63,7 +64,10 @@ function App() {
             <ProductsPage productList={productList} exact />
           </Route>
           <Route path="/product/detail/:productId" exact>
-            <ProductDetailPage exact />
+            <ProductDetailPage />
+          </Route>
+          <Route path="/login" exact>
+            <LoginPage />
           </Route>
         </Switch>
       </div>
