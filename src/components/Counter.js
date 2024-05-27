@@ -14,19 +14,19 @@ export const Counter = ({
     return initialCounter;
   });
 
-  const arttir = () => setCounter(counter + unit);
+  const arttir = () => setCounter((prevCounter) => prevCounter + unit);
   const azalt = () => setCounter(counter - unit);
   const reset = () => setCounter(initialCounter);
 
   useEffect(() => {
     // Effectin başlangıç anını yakalar
-    console.warn("COUNTER STATE DEĞİŞTİ: ", counter);
+    // console.warn("COUNTER STATE DEĞİŞTİ: ", counter);
 
     localStorage.setItem(counterId, counter);
 
     return () => {
       // Effect in sonlanma anını yakalar
-      console.warn("COUNTER STATE DEĞİŞECEK! ", counter);
+      // console.warn("COUNTER STATE DEĞİŞECEK! ", counter);
     };
   }, [counter]);
 
@@ -34,19 +34,19 @@ export const Counter = ({
     // Component Did Mount anını yakalarız - anında bu fonk çalışır
     // componentin doğum anı
 
-    console.warn("**** Counter componenti did mount oldu, doğdu!");
+    // console.warn("**** Counter componenti did mount oldu, doğdu!");
 
     return () => {
       // hangi aşamayı yakalar?
       // component will unmount!
-      console.warn("**** Counter componenti UNMOUNT oldu, yok edildi!");
+      // console.warn("**** Counter componenti UNMOUNT oldu, yok edildi!");
     };
   }, []);
 
   useEffect(() => {
-    console.log(
-      "Counter componenti rerender edildi, update oldu! Component Did Update"
-    );
+    // console.log(
+    //   "Counter componenti rerender edildi, update oldu! Component Did Update"
+    // );
   });
 
   return (

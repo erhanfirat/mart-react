@@ -12,12 +12,12 @@ import { Route, Switch } from "react-router-dom";
 import { ProductDetailPage } from "./pages/ProductDetailPage";
 import { Header } from "./layout/Header";
 import { UserRegisterPage } from "./pages/UserRegisterPage";
+import { ToastContainer, toast } from "react-toastify";
+import { LoginPage } from "./pages/LoginPage";
 
 // Stylingler
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import { ToastContainer, toast } from "react-toastify";
-import { LoginPage } from "./pages/LoginPage";
 
 function App() {
   const [productList, setProductList] = useState([]);
