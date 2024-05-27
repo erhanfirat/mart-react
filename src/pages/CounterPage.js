@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Counter } from "../components/Counter";
 import { MyButton } from "../components/MyButton";
+import { CounterWithReducer } from "../components/CounterWithReducer";
 
 export const CounterPage = () => {
   const [show, setShow] = useState(true);
@@ -15,6 +16,9 @@ export const CounterPage = () => {
         <br />
         <MyButton onClick={() => setShow(!show)}>Toggle Counter</MyButton>
         {show && <Counter counterId={"c-0"} initialCounter={0} />}
+        <hr />
+        <h3>Counter with Reducer</h3>
+        <CounterWithReducer counterId={"c-r"} initialCounter={0} />
         <hr />
       </div>
     </div>
