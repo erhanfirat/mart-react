@@ -7,7 +7,7 @@ h1 {
 }
 
 input {
-  @apply border py-2 px-4 rounded-md w-[60%];
+  @apply border py-2 px-4 rounded-md w-[60%] text-neutral-800;
 }
 
 label {

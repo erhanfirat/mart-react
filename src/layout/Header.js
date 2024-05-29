@@ -2,10 +2,12 @@ import { Link, useLocation } from "react-router-dom/cjs/react-router-dom";
 import { MyButton } from "../components/MyButton";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "../hook/useLocalStorage";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
   const [showNav, setShowNav] = useState(true);
   const [theme, setTheme] = useLocalStorage("theme", "light");
+  const title = useSelector((store) => store.title);
 
   // const location = useLocation();
 
@@ -19,7 +21,7 @@ export const Header = () => {
 
   return (
     <header>
-      <h1>Merhaba </h1>
+      <h1>{title}</h1>
       {showNav && (
         <nav>
           <Link to="/">Ana Sayfa</Link>
