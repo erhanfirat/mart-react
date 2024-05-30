@@ -1,20 +1,9 @@
-import { legacy_createStore } from "redux";
+import { applyMiddleware, legacy_createStore } from "redux";
+import logger from "redux-logger";
+import { globalReducer } from "./reducers/globalReducer";
+import { thunk } from "redux-thunk";
 
-const initialState = {
-  title: "MyReact App",
-  user: null,
-};
-
-const globalReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "SET_TITLE":
-      return { ...state, title: action.payload };
-      break;
-
-    default:
-      return state;
-      break;
-  }
-};
-
-export const myStore = legacy_createStore(globalReducer);
+export const myStore = legacy_createStore(
+  globalReducer,
+  applyMiddleware(logger, thunk)
+);
