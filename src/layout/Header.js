@@ -27,6 +27,7 @@ export const Header = () => {
           <Link to="/">Ana Sayfa</Link>
           <Link to="/counter">Sayaç</Link>
           <Link to="/products">Ürünler</Link>
+          <Link to="/ts-products">TS Ürünler</Link>
           <Link to="/register">Kayıt</Link>
           <Link to="/login">Giriş</Link>
         </nav>

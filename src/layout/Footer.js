@@ -2,11 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { SubscribeForm } from "../components/SubscribeForm";
 import { MyButton } from "../components/MyButton";
 import { useState } from "react";
+import { Motivation } from "../components/Motivation";
 
 export const Footer = () => {
   const [show, setShow] = useState(false);
   const title = useSelector((store) => store.title);
-  
+
   const [inputTitle, setInputTitle] = useState(title);
   const dispatch = useDispatch();
 
@@ -36,6 +37,8 @@ export const Footer = () => {
         </div>
       )}
       {/* <SubscribeForm /> */}
+
+      <Motivation />
     </footer>
   );
 };

@@ -18,9 +18,23 @@ import { LoginPage } from "./pages/LoginPage";
 // Stylingler
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import { useQuery } from "@tanstack/react-query";
+import { TanStackProductsPage } from "./pages/TanStackProductsPage";
 
 function App() {
   const [productList, setProductList] = useState([]);
+
+  const {
+    data: blockquote = {},
+    error,
+    isPending,
+  } = useQuery({
+    queryKey: ["motivation"],
+    queryFn: () =>
+      axios
+        .get("https://workintech-ng.onrender.com/motivation")
+        .then((res) => res.data),
+  });
 
   // sipariş state
 
@@ -48,6 +62,11 @@ function App() {
   // JSX : Java Script Expression
   return (
     <div className="main">
+      <div>
+        {blockquote.word}
+        <br />
+        {blockquote.author}
+      </div>
       <Header />
       <div className="page-content">
         <Switch>
@@ -62,6 +81,9 @@ function App() {
           </Route>
           <Route path="/products" exact>
             <ProductsPage productList={productList} exact />
+          </Route>
+          <Route path="/ts-products" exact>
+            <TanStackProductsPage exact />
           </Route>
           <Route path="/product/detail/:productId" exact>
             <ProductDetailPage />
