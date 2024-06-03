@@ -7,6 +7,7 @@ import { myStore } from "./store/store";
 
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { UserContextProvider } from "./context/UserContextProvider";
 
 export const queryClient = new QueryClient();
 
@@ -15,7 +16,9 @@ root.render(
   <Provider store={myStore}>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <UserContextProvider>
+          <App />
+        </UserContextProvider>
       </QueryClientProvider>
     </BrowserRouter>
   </Provider>
