@@ -18,6 +18,7 @@ import { LoginPage } from "./pages/LoginPage";
 // Stylingler
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import { Redirect, useLocation } from "react-router-dom";
 
 function App() {
   const [productList, setProductList] = useState([]);
@@ -43,6 +44,27 @@ function App() {
       .finally(() => {
         console.warn("REQUEST SONLANDI!");
       });
+
+    // Auto Login
+    const token = localStorage.getItem("token");
+    if (token) {
+      axios
+        .get("https://workintech-fe-ecommerce.onrender.com/verify", {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((res) => {
+          console.log("Oto Login Res >>>> ", res.data);
+          toast.success(
+            res.data.name + " kullanıcısı ile otomatik giriş yapıldı!"
+          );
+          localStorage.setItem("token", res.data.token);
+        })
+        .catch((err) => {
+          localStorage.removeItem("token");
+        });
+    }
   }, []);
 
   // JSX : Java Script Expression
@@ -54,9 +76,28 @@ function App() {
           <Route path="/" exact>
             <HomePage />
           </Route>
-          <Route path="/counter" exact>
-            <CounterPage />
-          </Route>
+          <Route
+            path="/counter"
+            exact
+            render={() => {
+              const token = localStorage.getItem("token");
+              if (token) {
+                // login olduysa
+                return <CounterPage />;
+              }
+
+              return (
+                <Redirect
+                  to={{
+                    pathname: "/login",
+                    state: {
+                      referrer: "/counter",
+                    },
+                  }}
+                />
+              );
+            }}
+          ></Route>
           <Route path="/register" exact>
             <UserRegisterPage />
           </Route>
