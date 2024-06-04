@@ -6,12 +6,20 @@ import { Provider } from "react-redux";
 import { myStore } from "./store/store";
 
 import "./index.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { UserContextProvider } from "./context/UserContextProvider";
+
+export const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={myStore}>
     <BrowserRouter>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <UserContextProvider>
+          <App />
+        </UserContextProvider>
+      </QueryClientProvider>
     </BrowserRouter>
   </Provider>
 );

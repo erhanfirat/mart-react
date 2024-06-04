@@ -1,5 +1,6 @@
 import { differenceInDays, format } from "date-fns";
 import { tr } from "date-fns/locale";
+import { Motivation } from "../components/Motivation";
 
 export const HomePage = () => {
   const daysToLearn = differenceInDays(new Date(), new Date("2024-03-18"));
@@ -17,6 +18,7 @@ export const HomePage = () => {
         sunt porro suscipit. Sapiente numquam consectetur nam sit quos vitae
         laborum.
       </p>
+      <Motivation />
       <div className="bg-amber-700 rounded-full w-[100px] h-[100px] flex justify-center items-center">
         H
       </div>

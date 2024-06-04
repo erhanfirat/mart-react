@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { SubscribeForm } from "../components/SubscribeForm";
 import { MyButton } from "../components/MyButton";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Motivation } from "../components/Motivation";
+import { myContext } from "../App";
 
 export const Footer = () => {
   const [show, setShow] = useState(false);
   const title = useSelector((store) => store.title);
-  
+  const { theme } = useContext(myContext);
+
   const [inputTitle, setInputTitle] = useState(title);
   const dispatch = useDispatch();
 
@@ -20,6 +23,7 @@ export const Footer = () => {
   return (
     <footer>
       <h2>Footer</h2>
+      <h2>{theme}</h2>
       <h3>{title}</h3>
       <MyButton onClick={() => setShow(!show)}>Change Title</MyButton>
       {show && (
@@ -36,6 +40,8 @@ export const Footer = () => {
         </div>
       )}
       {/* <SubscribeForm /> */}
+
+      <Motivation />
     </footer>
   );
 };

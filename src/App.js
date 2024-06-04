@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // Internal Libraries
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { ProductsPage } from "./pages/ProductsPage";
 import { Footer } from "./layout/Footer";
 
@@ -18,10 +18,28 @@ import { LoginPage } from "./pages/LoginPage";
 // Stylingler
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import { Redirect, useLocation } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { TanStackProductsPage } from "./pages/TanStackProductsPage";
+import { useLocalStorage } from "./hook/useLocalStorage";
+
+export const myContext = createContext();
 
 function App() {
   const [productList, setProductList] = useState([]);
+  const [theme, setTheme] = useLocalStorage("theme", "light");
+
+  const {
+    data: blockquote = {},
+    error,
+    isPending,
+  } = useQuery({
+    queryKey: ["motivation"],
+    queryFn: () =>
+      axios
+        .get("https://workintech-ng.onrender.com/motivation")
+        .then((res) => res.data),
+  });
 
   // sipariş state
 
@@ -69,52 +87,62 @@ function App() {
 
   // JSX : Java Script Expression
   return (
-    <div className="main">
-      <Header />
-      <div className="page-content">
-        <Switch>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
-          <Route
-            path="/counter"
-            exact
-            render={() => {
-              const token = localStorage.getItem("token");
-              if (token) {
-                // login olduysa
-                return <CounterPage />;
-              }
+    <myContext.Provider value={{ theme, setTheme }}>
+      <div className="main">
+        <div>
+          {blockquote.word}
+          <br />
+          {blockquote.author}
+        </div>
+        <Header />
+        <div className="page-content">
+          <Switch>
+            <Route path="/" exact>
+              <HomePage />
+            </Route>
+            <Route
+              path="/counter"
+              exact
+              render={() => {
+                const token = localStorage.getItem("token");
+                if (token) {
+                  // login olduysa
+                  return <CounterPage />;
+                }
 
-              return (
-                <Redirect
-                  to={{
-                    pathname: "/login",
-                    state: {
-                      referrer: "/counter",
-                    },
-                  }}
-                />
-              );
-            }}
-          ></Route>
-          <Route path="/register" exact>
-            <UserRegisterPage />
-          </Route>
-          <Route path="/products" exact>
-            <ProductsPage productList={productList} exact />
-          </Route>
-          <Route path="/product/detail/:productId" exact>
-            <ProductDetailPage />
-          </Route>
-          <Route path="/login" exact>
-            <LoginPage />
-          </Route>
-        </Switch>
+                return (
+                  <Redirect
+                    to={{
+                      pathname: "/login",
+                      state: {
+                        referrer: "/counter",
+                      },
+                    }}
+                  />
+                );
+              }}
+            ></Route>
+            <Route path="/register" exact>
+              <UserRegisterPage />
+            </Route>
+            <Route path="/products" exact>
+              <ProductsPage productList={productList} exact />
+            </Route>
+            <Route path="/ts-products" exact>
+              <TanStackProductsPage exact />
+            </Route>
+            <Route path="/product/detail/:productId" exact>
+              <ProductDetailPage />
+            </Route>
+            <Route path="/login" exact>
+              <LoginPage />
+            </Route>
+          </Switch>
+        </div>
+        <Footer />
+        <ToastContainer position="bottom-center" />
       </div>
-      <Footer />
-      <ToastContainer position="bottom-center" />
-    </div>
+    </myContext.Provider>
   );
 }
 
